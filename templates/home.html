@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+          font-family: 'Arimo', sans-serif;
+          background-color: #f8f9fa;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+      }
+
+      .container {
+          background-color: #ffffff;
+          padding: 30px;
+          border-radius: 10px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          width: 350px;
+          text-align: center;
+      }
+
+      h1 {
+          font-family: 'Pacifico', cursive;
+          color: #d9534f;
+          margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          margin: 8px 0;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus {
+          border-color: #d9534f;
+          outline: none;
+      }
+
+      button {
+          width: 100%;
+          padding: 12px;
+          background-color: #d9534f;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+          margin-top: 10px;
+          transition: background-color 0.3s;
+      }
+
+      button:hover {
+          background-color: #c9302c;
+      }
+
+      .result {
+          margin-top: 20px;
+          font-size: 18px;
+          color: #333;
+      }
+
+      .heart-icon {
+          display: block;
+          margin: 0 auto 15px;
+          width: 80px;
+          height: 80px;
+          background: url('https://cdn-icons-png.flaticon.com/512/375/375234.png') no-repeat center center;
+          background-size: contain;
+      }
+  </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+
+        <!-- Main Input Form -->
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="age" placeholder="Age" required="required" /><br>
+            <input type="text" name="sex" placeholder="Sex (0 = female, 1 = male)" required="required" /><br>
+            <input type="text" name="cp" placeholder="Chest Pain Type (0-3)" required="required" /><br>
+            <input type="text" name="trestbps" placeholder="Resting Blood Pressure" required="required" /><br>
+            <input type="text" name="chol" placeholder="Cholesterol" required="required" /><br>
+            <input type="text" name="fbs" placeholder="Fasting Blood Sugar >120 mg/dl (1 = true, 0 = false)" required="required" /><br>
+            <input type="text" name="restecg" placeholder="Resting ECG (0-2)" required="required" /><br>
+            <input type="text" name="thalach" placeholder="Max Heart Rate Achieved" required="required" /><br>
+            <input type="text" name="exang" placeholder="Exercise Induced Angina (1 = yes, 0 = no)" required="required" /><br>
+            <input type="text" name="oldpeak" placeholder="ST Depression Induced by Exercise" required="required" /><br>
+            <input type="text" name="slope" placeholder="Slope of the Peak Exercise ST Segment (0-2)" required="required" /><br>
+            <input type="text" name="ca" placeholder="Number of Major Vessels (0-3)" required="required" /><br>
+            <input type="text" name="thal" placeholder="Thalassemia (1 = normal; 2 = fixed defect; 3 = reversible defect)" required="required" /><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+
+</html>
